@@ -15,7 +15,7 @@ data_dir = os.environ.get("TRAINML_DATA_PATH")
 output_dir = os.environ.get("TRAINML_OUTPUT_PATH")
 
 
-def predict_base64_image(name, contents):
+def predict_base64_voice(name, contents):
     wav_file = open("temp.wav", "wb")
     decode_string = base64.b64decode(enc)
     wav_file.write(decode_string)
