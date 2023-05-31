@@ -21,6 +21,5 @@ function cross_base64() {
 ENDPOINT_URL=$1
 FILE_NAME=$(basename ${2})
 
-(echo -n "{\"name\": \"${FILE_NAME}\", \"contents\": \""; cross_base64 ${2}; echo '"}') 
-#|
-#curl -H "Content-Type: application/json" -d @-  ${ENDPOINT_URL}/predict 
+(echo -n "{\"name\": \"${FILE_NAME}\", \"contents\": \""; cross_base64 ${2}; echo '"}') |
+curl -H "Content-Type: application/json" -d @-  ${ENDPOINT_URL}/predict 
