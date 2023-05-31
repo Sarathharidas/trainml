@@ -21,6 +21,7 @@ def predict_base64_voice(name, contents):
     wav_file.write(decode_string)
     
     os.system('whisper "temp.wav" --task translate --model large')
+    ## return Send back the srt file
     return {'success':'1'}
         
 
