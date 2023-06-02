@@ -9,6 +9,7 @@ import json
 import base64
 import tempfile
 import numpy as np
+from fastapi.responses import FileResponse
 
 
 data_dir = os.environ.get("TRAINML_DATA_PATH")
@@ -22,7 +23,7 @@ def predict_base64_voice(name, contents):
     
     os.system('whisper "temp.wav" --task translate --model large')
     ## return Send back the srt file
-    return {'success':'1'}
+    return FileResponse('subtitle.srt', media_type='application/octet-stream', filename='temp.srt')
         
 
 
