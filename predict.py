@@ -10,6 +10,7 @@ import base64
 import tempfile
 import numpy as np
 from fastapi.responses import FileResponse
+import aiofiles
 
 
 data_dir = os.environ.get("TRAINML_DATA_PATH")
