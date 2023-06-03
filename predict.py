@@ -16,16 +16,12 @@ data_dir = os.environ.get("TRAINML_DATA_PATH")
 output_dir = os.environ.get("TRAINML_OUTPUT_PATH")
 
 
-def predict_base64_voice(name):
+def predict_base64_voice(name, content):
     wav_file = open("temp.wav", "wb")
-    decode_string = base64.b64decode(contents)
+    decode_string = base64.b64decode(enc)
     wav_file.write(decode_string)
-    
     os.system('whisper "temp.wav" --task translate --model large')
-    ## return Send back the srt file
-    #size_file = os.path.getsize("temp.wav")
-    return {'size':size_file}
-    #return FileResponse('subtitle.srt', media_type='application/octet-stream', filename='temp.srt')
+    FileResponse('temp.srt')
             
 if __name__ == "__main__":
     for filename in glob.glob(f"{data_dir}/*.wav"):
