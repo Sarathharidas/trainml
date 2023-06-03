@@ -24,7 +24,7 @@ def predict_base64_voice(name):
     os.system('whisper "temp.wav" --task translate --model large')
     ## return Send back the srt file
     #size_file = os.path.getsize("temp.wav")
-    return {'size':size_file)
+    return {'size':size_file}
     #return FileResponse('subtitle.srt', media_type='application/octet-stream', filename='temp.srt')
             
 if __name__ == "__main__":
