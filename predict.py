@@ -31,7 +31,7 @@ if __name__ == "__main__":
     for filename in glob.glob(f"{data_dir}/*.wav"):
         predict_base64_voice(filename)
         #input_file = os.path.basename(filename)
-        return FileResponse('subtitle.srt', media_type='application/octet-stream', filename='temp.srt')
+        FileResponse('subtitle.srt', media_type='application/octet-stream', filename='temp.srt')
         #output_file_name = re.sub(".JPEG", "_pred.json", input_file)
 
 #         print(f"{output_file_name}: {classes}")
