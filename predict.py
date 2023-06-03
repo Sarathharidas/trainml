@@ -21,7 +21,10 @@ def predict_base64_voice(name, content):
     decode_string = base64.b64decode(content)
     wav_file.write(decode_string)
     os.system('whisper "temp.wav" --task translate --model large')
-    FileResponse('temp.srt')
+    #FileResponse('temp.srt')
+    FileResponse('file.srt', media_type='application/octet-stream', filename='temp.srt')
+
+
             
 if __name__ == "__main__":
     for filename in glob.glob(f"{data_dir}/*.wav"):
