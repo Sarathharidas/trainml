@@ -24,14 +24,14 @@ def predict_base64_voice(name):
     os.system('whisper "temp.wav" --task translate --model large')
     ## return Send back the srt file
     #size_file = os.path.getsize("temp.wav")
-    #return {'size':size_file)
-    return FileResponse('subtitle.srt', media_type='application/octet-stream', filename='temp.srt')
+    return {'size':size_file)
+    #return FileResponse('subtitle.srt', media_type='application/octet-stream', filename='temp.srt')
             
 if __name__ == "__main__":
     for filename in glob.glob(f"{data_dir}/*.wav"):
         predict_base64_voice(filename)
         #input_file = os.path.basename(filename)
-        FileResponse('subtitle.srt', media_type='application/octet-stream', filename='temp.srt')
+        #FileResponse('subtitle.srt', media_type='application/octet-stream', filename='temp.srt')
         #output_file_name = re.sub(".JPEG", "_pred.json", input_file)
 
 #         print(f"{output_file_name}: {classes}")
