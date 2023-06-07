@@ -23,7 +23,7 @@ def predict_base64_voice(name, content):
     wav_file.write(decode_string)
     os.system('whisper "temp.wav" --task translate --model large')
     #FileResponse('temp.srt')
-    FileResponse('file.srt', media_type='text-plain', filename='temp.srt')
+    FileResponse('file.srt', media_type='text/plain', filename='temp.srt')
 
 
             
