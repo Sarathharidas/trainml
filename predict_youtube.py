@@ -14,12 +14,44 @@ output_dir = os.environ.get("TRAINML_OUTPUT_PATH")
 model_dir = os.environ.get("TRAINML_MODEL_PATH")
 
 
-def predict_base64_voice(name, content):
-    wav_file = open(f"{model_dir}/temp.wav", "wb")
-    decode_string = base64.b64decode(content)
-    wav_file.write(decode_string)
+# def predict_base64_voice(name):
+#     download_blob('quicktranslates', filename, filename)
+#     decode_string = base64.b64decode(content)
+#     wav_file.write(decode_string)
+#     os.system(f'whisper "{model_dir}/temp.wav" --task translate --model large --output_dir {model_dir}')
+#     #FileResponse('temp.srt')
+#     return FileResponse(f'temp.srt', media_type='text/plain', filename=f'{model_dir}/temp.srt')
+
+def login(youtube_link: str = Form(...), language: str = Form(...)):
+    
+    video_file_only_name = str(youtube_link)[-5:]
+    video_folder_path = os.path.join(os.getcwd(), video_file_only_name)
+
+    if not os.path.exists(video_folder_path):
+        os.makedirs(video_folder_path)
+    
+    os.chdir(video_folder_path)
+
+    file_name = 'my_audio_file'
+    
+    ytdl_opts = {
+    'outtmpl': file_name,
+    'format': 'bestaudio/best',
+    'postprocessors': [{
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'wav',
+        'preferredquality': '192',
+    }],
+    }
+    ytdl = yt_dlp.YoutubeDL(ytdl_opts)
+    
+    ytdl.download([youtube_link])
+    
+    audio_file_path = 'my_audio_file.wav'
+
+    #srtFilename = whisper_api(audio_file_path, language)
     os.system(f'whisper "{model_dir}/temp.wav" --task translate --model large --output_dir {model_dir}')
-    #FileResponse('temp.srt')
+    os.remove(audio_file_path)
     return FileResponse(f'temp.srt', media_type='text/plain', filename=f'{model_dir}/temp.srt')
 
 
